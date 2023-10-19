@@ -118,14 +118,12 @@ public class LobbyControl : NetworkBehaviour
     // sever lắng nghe khi user connect và cập nhật
     private void OnClientConnectedCallback(ulong clientId)
     {
-        Debug.Log("CASDF");
         if (IsServer && clientId != 0)
         {
             if (!_clientsInLobby.ContainsKey(clientId)) _clientsInLobby.Add(clientId, false);
             GenerateUserStatsForLobby();
 
             UpdateAndCheckPlayersInLobby();
-            Debug.Log("CASDF");
         }
 
 

@@ -84,7 +84,7 @@ public class MenuControl : MonoBehaviour
         // Kiểm tra số lượng user trong phòng,... (phát triển sau)
         // Sau khi kiểm tra xong. get vị trí tiếp theo để spawn và spawn player
         response.Position = GetNextSpawnPosition();
-        response.Rotation = Quaternion.identity;
+        response.Rotation = Quaternion.Euler(0,90f,0);
         response.Approved = true;
         response.CreatePlayerObject = true;
 

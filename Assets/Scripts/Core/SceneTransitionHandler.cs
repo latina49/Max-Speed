@@ -75,6 +75,7 @@ public class SceneTransitionHandler : NetworkBehaviour
             SceneManager.LoadScene(DefaultMainMenu);
            // NetworkManager.Singleton.StartServer();
         }
+        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
     }
 
     /// <summary>
@@ -117,10 +118,19 @@ public class SceneTransitionHandler : NetworkBehaviour
         if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
         {
             NetworkManager.Singleton.SceneManager.OnLoadComplete -= OnLoadComplete;
+            NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnectCallback;
         }
         
         OnClientLoadedScene = null;
         SetSceneState(SceneStates.Start);
         SceneManager.LoadScene(1);
+    }
+
+    private void OnClientDisconnectCallback(ulong id)
+    {
+        if (IsClient)
+        {
+            Application.Quit();
+        }
     }
 }

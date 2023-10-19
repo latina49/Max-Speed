@@ -144,12 +144,12 @@ namespace H4R
 
         public override void OnNetworkSpawn()
         {
-            if (!IsOwner)
-            {
-                _playerCamera.Priority = 0;
-                return;
-            }
-            _playerCamera.Priority = 100;
+            //if (!IsOwner)
+            //{
+            //    _playerCamera.Priority = 0;
+            //    return;
+            //}
+            _playerCamera.Priority = 0;
 
              _rb.interpolation = RigidbodyInterpolation.Interpolate;
                        
@@ -168,10 +168,17 @@ namespace H4R
             if(IsOwner)
             {
                 _rb.interpolation = RigidbodyInterpolation.Interpolate;
-                _inputReader.Enable();
+                _playerCamera.Priority = 100;
             }
         }
 
+        [ClientRpc]
+        public void InvokeDrivingClientRpc()
+        {
+            if (!IsOwner) return;
+            _inputReader.Enable();
+        }
+             
         private void Update()
         {
             _timer.Update(Time.deltaTime);
@@ -201,8 +208,6 @@ namespace H4R
 
             if (bufferIndex == -1) return;
             SendToClientRpc(_serverStateBuffer.Get(bufferIndex), inputPayload);
-            
-
         }
 
         private void HandleClientTick()
