@@ -38,6 +38,8 @@ public class MenuControl : MonoBehaviour
         {
             utpTransport.SetConnectionData(Sanitize(_serverIpAddress), 7777);
         }
+        NetworkManager.Singleton.ConnectionApprovalCallback = ApprovalCheck;
+
         if (NetworkManager.Singleton.StartServer())
         {
             SceneTransitionHandler.sceneTransitionHandler.RegisterCallbacks();
