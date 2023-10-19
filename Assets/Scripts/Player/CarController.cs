@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
@@ -118,9 +118,12 @@ namespace H4R
         Queue<InputPayload> _serverInputQueue;
 
 
+        /// <summary>
+        ///  đầu tiên em phải tìm hiểu về Circular buffer
+        /// </summary>
+
         private void Awake()
         {
-             _inputReader.Enable();
             _rb.centerOfMass = _centerOfMass.localPosition;
             _originalCenterOfMass = _centerOfMass.localPosition;
 
@@ -136,13 +139,11 @@ namespace H4R
 
             _serverStateBuffer = new CircularBuffer<StatePayload>(k_bufferSize);
             _serverInputQueue = new Queue<InputPayload>();
-
         }
 
 
         public override void OnNetworkSpawn()
         {
-             _rb.interpolation = RigidbodyInterpolation.Interpolate;
             if (!IsOwner)
             {
                 _playerCamera.Priority = 0;
@@ -154,9 +155,22 @@ namespace H4R
                        
         }
 
+        //chỉ gọi ở server. và khi bắt đầu sẽ gửi dữ liệu về cho client để bắt đầu ở client
         public void StartRace() {
-           
-        } 
+            _rb.interpolation = RigidbodyInterpolation.Interpolate;
+            StartRaceClientRpc();
+        }
+
+        [ClientRpc]
+        public void StartRaceClientRpc()
+        {
+            //nếu là owner thì bật input
+            if(IsOwner)
+            {
+                _rb.interpolation = RigidbodyInterpolation.Interpolate;
+                _inputReader.Enable();
+            }
+        }
 
         private void Update()
         {
