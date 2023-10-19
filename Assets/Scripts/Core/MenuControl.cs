@@ -9,7 +9,7 @@ public class MenuControl : MonoBehaviour
 {
     [SerializeField] private GameObject _startMenuOb;
     [SerializeField] private GameObject _lobbyMenuOb;
-    [SerializeField] private string _serverIpAddress = "127.0.0.1";
+    [SerializeField] private string _serverIpAddress = "27.71.26.111";
 
     [SerializeField]
     List<Transform> _spawnPositions = new List<Transform>();
@@ -21,6 +21,8 @@ public class MenuControl : MonoBehaviour
         if (Application.isBatchMode)
             StartServer();
     }
+
+    public void OnQuitGame() => Application.Quit();
 
     public Vector3 GetNextSpawnPosition()
     {

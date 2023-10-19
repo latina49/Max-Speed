@@ -128,9 +128,9 @@ public class SceneTransitionHandler : NetworkBehaviour
 
     private void OnClientDisconnectCallback(ulong id)
     {
-        if (IsClient)
-        {
-            Application.Quit();
-        }
+        //if (IsClient)
+        //{
+        //    Application.Quit();
+        //}
     }
 }

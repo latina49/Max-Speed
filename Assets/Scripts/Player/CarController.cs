@@ -157,6 +157,7 @@ namespace H4R
 
         //chỉ gọi ở server. và khi bắt đầu sẽ gửi dữ liệu về cho client để bắt đầu ở client
         public void StartRace() {
+           
             _rb.interpolation = RigidbodyInterpolation.Interpolate;
             StartRaceClientRpc();
         }
@@ -167,6 +168,9 @@ namespace H4R
             //nếu là owner thì bật input
             if(IsOwner)
             {
+                if (UIController.Instance != null)
+                    UIController.Instance.Show();
+
                 _rb.interpolation = RigidbodyInterpolation.Interpolate;
                 _playerCamera.Priority = 100;
             }
