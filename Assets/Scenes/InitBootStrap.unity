@@ -220,6 +220,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 6bccecab8e3a7834a9ea9d462304ca1b, type: 2}
     - target: {fileID: 8303540700821626563, guid: a33721e9ba3981444b972ae70c494d73, type: 3}
+      propertyPath: ConnectionData.Address
+      value: 27.71.26.111
+      objectReference: {fileID: 0}
+    - target: {fileID: 8303540700821626563, guid: a33721e9ba3981444b972ae70c494d73, type: 3}
       propertyPath: ConnectionData.ServerListenAddress
       value: 127.0.0.1
       objectReference: {fileID: 0}

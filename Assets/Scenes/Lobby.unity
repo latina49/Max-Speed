@@ -3259,7 +3259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startMenuOb: {fileID: 1174516843}
   _lobbyMenuOb: {fileID: 1673106208}
-  _serverIpAddress: 127.0.0.1
+  _serverIpAddress: 27.71.26.111
   _spawnPositions:
   - {fileID: 1331856620}
   - {fileID: 1080409089}
