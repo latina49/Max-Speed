@@ -44,7 +44,8 @@ public class SceneTransitionHandler : NetworkBehaviour
         sceneTransitionHandler = this;
         SetSceneState(SceneStates.Init);
         DontDestroyOnLoad(this);
-       
+
+        Application.targetFrameRate = 60;
 
     }
 
